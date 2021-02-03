@@ -1,0 +1,15 @@
+{  
+    "name": "Dota Match Finder",
+    "description": "This extension will automatically identify 10 digit numbers as Dota match IDs and turn them into clickable links that download the replay and start it in Dota",
+    "version": "0.1",
+    "browser_action": {
+     "default_icon": "icon.png",
+     "default_popup": "popup.html",
+     "default_title": "Find Dota Matches"
+    },
+    "permissions": [
+        "downloads",
+        "<all_urls>"
+     ],
+     "manifest_version": 2
+  }
