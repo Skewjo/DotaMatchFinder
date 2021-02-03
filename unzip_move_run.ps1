@@ -1,4 +1,7 @@
-﻿#FIND DOWNLOAD DIRECTORY
+﻿#I may want to use this line when I go to run this powershell script from another source(such as the chrome extenion's javascript):
+# PowerShell.exe -windowstyle hidden { your script.. } - found here: https://stackoverflow.com/questions/1802127/how-to-run-a-powershell-script-without-displaying-a-window#:~:text=I%20found%20out%20if%20you,window%20when%20the%20task%20runs.
+
+#FIND DOWNLOAD DIRECTORY
 $chromePreferences = Get-Content "C:\Users\$env:USERNAME\AppData\Local\Google\Chrome\User Data\Default\preferences"
 $downloadPreference = $chromePreferences | ConvertFrom-Json | Select-Object -Property "download" 
 $downloadDirectory = $downloadPreference.download.default_directory
@@ -24,8 +27,8 @@ Write-Output("File No Extension: $fileNoExtension")
 #FIND STEAM & DOTA INSTALL LOCATION
 $steamRegistry = Get-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Valve\Steam
 #REPLACE THE FOLLOWING LINE WITH THE DIRECTORY ABOVE "steamapps" IF YOUR DOTA 2 INSTALLATION FOLDER IS NOT IN THE DEFAULT LOCATION(IN YOUR STEAM INSTALLATION DIRECTORY)
-#$steamInstallPath = $steamRegistry.InstallPath
-$steamInstallPath = "F:\SteamLibrary"
+$steamInstallPath = $steamRegistry.InstallPath
+#$steamInstallPath = "F:\SteamLibrary"# This is the path that I have to use...
 $dotaReplayPath = "$steamInstallPath\steamapps\common\dota 2 beta\game\dota\replays\"
 
 
@@ -37,8 +40,7 @@ if(Test-Path($dotaReplayPath)){
 }
 else{
     Write-Output("Dota 2 installation directory not found in default location - please open this script and change the path to the dota 2 replay directory")
-    
-    #Implement Read-Host here maybe?
+    #Implement Read-Host here & save their given path in some other kind of config file maybe?
 }
 
 
@@ -60,28 +62,14 @@ else
 
 
 #RUN DOTA
-#32-bit or 64 bit for everyone??
+#32-bit or 64 bit for everyone?? - 32 bit for now
 $dotaExe = "$steamInstallPath\steamapps\common\dota 2 beta\game\bin\win32\dota2.exe"
 #$dotaExe = "$steamInstallPath\steamapps\common\dota 2 beta\game\bin\win64\dota2.exe"
-Start-Process -FilePath $dotaExe
+Start-Process -Wait -FilePath $dotaExe
 
+#with the -Wait option, the powershell script will run until dota exits... not sure if I want that...
+#delete the autoexec and replay after dota closes
+Remove-Item $autoExec
+Remove-Item $dotaReplayPath\$fileNoExtension
 
-
-#pip install pyauto
-# THIS IS A FEW OF THE MANY VARIATIONS I HAD TO ATTEMPT TO GET GIT-BASH TO LAUNCH WITH 
-# LEAVING THIS HERE TEMPORARILY FOR POSTERITY 
-#bash "D:\\Users\\Skewb\Documents\\repos\\DotaMatchFinder\\unzip.sh"
-#bash "/d/Users/Skewb/Documents/repos/DotaMatchFinder/unzip.sh"
-# $downloadDirectory\$matchID"
-#$gitBash = start "$env:PROGRAMFILES\Git\git-bash.exe"
-#"./unzip.bash $downloadDirectory\$matchID" > $gitBash
-#Start-Process -FilePath "$env:PROGRAMFILES\Git\git-bash.exe" -Args "./unzip.sh" #$downloadDirectory\$matchID"
-#Start-Process -FilePath "$env:PROGRAMFILES\Git\git-bash.exe" -Args "D:\\Users\\Skewb\Documents\\repos\\DotaMatchFinder\\unzip.sh"
-#Start-Process -FilePath "$env:PROGRAMFILES\Git\git-bash.exe" -Args "D:\Users\Skewb\Documents\repos\DotaMatchFinder\unzip.sh | sleep 5"
-#start "$env:PROGRAMFILES\Git\git-bash.exe" ["./unzip.sh]# $downloadDirectory\$matchID"]
-#start "$env:PROGRAMFILES\Git\git-bash.exe" | "./unzip.sh $downloadDirectory\$matchID"
-#sh "./unzip.bash $downloadDirectory\$matchID" 
-#"$env:PROGRAMFILES\Git\git-bash.exe" > "./unzip.bash $downloadDirectory\$matchID"
-
-Pause
-
+#Pause #- leaving for troubleshooting because I always forget the name of the command
