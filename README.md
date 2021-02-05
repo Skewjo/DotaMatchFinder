@@ -12,6 +12,11 @@ The second piece is a powershell script that will
  - start up Dota & auto play the demo
 (This script currently has to be kicked off manually - it also calls Git Bash for the "bunzip" utility, but hopefully I can remove that later)
 
+## Platforms
+
+I thought this project would end up being Windows only, but it turns out that [Powershell can run on Linux and MacOS!](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
+There are definitely paths that won't work on other platforms, but a couple of minor changes should fix it right up.
+
 ## Getting Started
 1. Clone the repo(and download & install Git Bash if you don't already have it)
 2. Add the entire repo folder as an "unpacked extension" in chrome(very, very easy - google should help you here, but I may add some detailed instructions for this if necessary)
