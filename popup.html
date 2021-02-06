@@ -1,12 +1,34 @@
-<!doctype html>
-<html>
+aaaa<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Dota Match Finder</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="ispinner.css" rel="stylesheet">
     <script type="module" src="popup.js"></script>
   </head>
   <body>
     <h4>Dota Match Finder</h4>
     <input type="text" id="matchId" name="Match ID:"><br><br>
-    <button id="checkPage">Download match.</button>
+    <button id="checkPage">Download match</button>
+    <div id="loadingBar" style="display: none">
+      <p>Fetching replay...</p>
+      <div class="ispinner gray animating">
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+        <div class="ispinner-blade"></div>
+      </div>
+    </div>
   </body>
 </html>
