@@ -10,7 +10,8 @@
     "permissions": [
         "downloads",
         "activeTab",
-		"http://*.valve.net/"
+		"http://*.valve.net/",
+        "nativeMessaging"
      ],
      "manifest_version": 2
   }
