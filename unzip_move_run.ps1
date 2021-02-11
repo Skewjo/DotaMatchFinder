@@ -21,23 +21,13 @@ else {
 
 # UNZIP FILE
 Write-Output("`nUnzipping the replay file...")
-# TODO: I'm not sure what happens here if there are multiple zipped demo files in this directory...
-$demoFileName = Get-ChildItem -Path "$downloadDirectory\*.bz2"
+
+$demoFileName = Get-ChildItem -Path "$downloadDirectory\*.bz2" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 Write-Output("Demo file found in '$demoFileName'.")
 
-# TODO: get rid of git bash window Minimized/Hidden didn't work.
-$gitBashStatus = Start-Process -WindowStyle Minimized -PassThru -Wait -FilePath "$env:PROGRAMFILES\Git\git-bash.exe" `
-    -Args "$PSScriptRoot\unzip.sh $demoFileName"
-$gitBashUnzipExitCode = $gitBashStatus.ExitCode
-# TODO: look for how to get git bash exit codes and error messages.
-<#
-if ($gitBashUnzipExitCode -eq 0) {
-    Write-Output("File unziped successfully.")
-}
-else {
-    Write-Output("Error in GitBash: $gitBashUnzipExitCode")
-}
-#>
+$bzip2Exe = "$PSScriptRoot\lib\bzip2.exe"
+& $bzip2Exe -dk "$demoFileName"
+
 $fileNoExtension = [io.path]::GetFileNameWithoutExtension($demoFileName)
 
 # FIND STEAM & DOTA INSTALL LOCATION
