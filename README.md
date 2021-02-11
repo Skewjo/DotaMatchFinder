@@ -20,9 +20,8 @@ There are definitely paths that won't work on other platforms, but a couple of m
 ## Getting Started
 1. Clone the repo
 2. Add the entire repo folder as an "unpacked extension" in chrome(very, very easy - google should help you here, but I may add some detailed instructions for this if necessary)
-3. Add "-exec autoexec.cfg" to your launch options for Dota in the Steam client.
-4. Use the extension to download your first match by typing in a 10 digit match id in the blank text box, and hit the "download match" button(if you're prompted on where to place the downloaded file, just put it in your normal download directory) 
-5. Once you've used the extension to download a first match, attempt to run the "unzip_move_run.ps1" powershell script manually.
+3. Use the extension to download your first match by typing in a 10 digit match id in the blank text box, and hit the "download match" button(if you're prompted on where to place the downloaded file, just put it in your normal download directory) 
+4. Once you've used the extension to download a first match, attempt to run the "unzip_move_run.ps1" powershell script manually.
   - This is where you may hit snags. Common issues will be listed below.
     - Powershell initial setup
 
