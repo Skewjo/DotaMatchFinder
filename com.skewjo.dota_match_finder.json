@@ -1,9 +1,9 @@
 {   
   "name": "com.skewjo.dota_match_finder",   
   "description": "Identifies 10 digit numbers as Dota match IDs and turn them into clickable links that download the replay and start it in Dota",
-  "path": "C:\\Users\\LeoRocha\\DotaMatchFinder\\run.bat",
+  "path": "D:\\Users\\Skewb\\Documents\\repos\\DotaMatchFinder\\run.bat", 
   "type": "stdio", 
   "allowed_origins": [     
-    "chrome-extension://emgcnjfmhlcnabjlnhjjknikgpclpcii/"   
+    "chrome-extension://hmocnahcnbbdmajelbblcbahidcpbdef/"   
   ] 
 }
